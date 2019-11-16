@@ -5,6 +5,8 @@ __lua__
 white = 7
 yellow = 10
 
+txty = 0
+
 function _init()
   ux = {
     selected = 1,
@@ -36,7 +38,9 @@ function _draw()
   if (ux.modal) then
     x = 6
     y = 6
-    modal(selected_spell,x,y)
+    if (btnp(0)) txty = txty + y
+    if (btnp(1)) txty = txty - y
+    modal(selected_spell,x,txty)
   end
 
   if (not ux.modal) then
@@ -84,7 +88,6 @@ function modal(spell, x, y)
   from = 1
   to = 28
   for i=1,(#spell.description / 28) do
-    -- desc = from .. ", ".. to
     desc = sub(spell.description, from, to)
     print(desc, x, y + (6 * (7 + i)), 6)
     from = from + 28
