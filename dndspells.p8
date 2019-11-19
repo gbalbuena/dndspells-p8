@@ -35,17 +35,8 @@ function _draw()
       end
     end
     spellY = 10 + (index * 10) - (ux.selected * 10);
-    sprite = 0
-    if (spell.school == "abjuration") sprite = 1
-    if (spell.school == "illusion") sprite = 2
-    if (spell.school == "enchantment") sprite = 3
-    if (spell.school == "divination") sprite = 4
-    if (spell.school == "evocation") sprite = 5
-    if (spell.school == "transmutation") sprite = 6
-    if (spell.school == "necromancy") sprite = 7
-    if (spell.school == "conjuration") sprite = 8
 
-    spr(sprite, 2, spellY)
+    spr(get_spell_sprite(spell.school), 2, spellY)
     print(spell.name, 12, spellY + 1, col)
   end
 
@@ -63,6 +54,17 @@ function _draw()
     header("paladin spells - 5th edition")
     footer()
   end
+end
+
+function get_spell_sprite(school)
+  if (school == "abjuration") return 1
+  if (school == "illusion") return 2
+  if (school == "enchantment") return 3
+  if (school == "divination") return 4
+  if (school == "evocation") return 5
+  if (school == "transmutation") return 6
+  if (school == "necromancy") return 7
+  if (school == "conjuration") return 8
 end
 
 function input()
@@ -115,10 +117,10 @@ function modal(spell, x, y)
   print("range",      x, y + (6 * 5), 2)
   print(spell.range, 60, y + (6 * 5), 6)
 
-  print("components",     x, y + (6 * 6), 2)
+  print("components",      x, y + (6 * 6), 2)
   print(spell.components, 60, y + (6 * 6), 6)
 
-  print("duration",     x, y + (6 * 7), 2)
+  print("duration",      x, y + (6 * 7), 2)
   print(spell.duration, 60, y + (6 * 7), 6)
   
   from = 1
